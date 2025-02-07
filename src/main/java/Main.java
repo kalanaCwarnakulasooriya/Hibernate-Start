@@ -1,5 +1,6 @@
 import config.FactoryConfiguration;
 import entity.Customer;
+import entity.CustomerFullName;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
@@ -7,13 +8,21 @@ import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
-//        Customer customer = new Customer(
-//                1,
-//                "Dirusha Eshral",
-//                "dikka@example.com"
-//        );
-//
-//        saveCustomer(customer);
+        CustomerFullName customerFullName = new CustomerFullName(
+                "Nimal",
+                "Perera"
+        );
+        Customer customer = new Customer(
+                4,
+                "Nimal",
+                "nimal@example.com",
+                "0771234567",
+                "1234",
+                "Description",
+                customerFullName
+        );
+
+        saveCustomer(customer);
 
 //        Customer customer = getCustomerById(1);
 //        System.out.println(customer);
@@ -26,11 +35,11 @@ public class Main {
 //                )
 //        );
 
-        List<Customer> allCustomers = getAllCustomers();
-
-        for (Customer customer : allCustomers) {
-            System.out.println(customer);
-        }
+//        List<Customer> allCustomers = getAllCustomers();
+//
+//        for (Customer customer : allCustomers) {
+//            System.out.println(customer);
+//        }
 
     }
 
