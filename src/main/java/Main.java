@@ -3,6 +3,8 @@ import entity.Customer;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
+import java.util.List;
+
 public class Main {
     public static void main(String[] args) {
 //        Customer customer = new Customer(
@@ -18,11 +20,18 @@ public class Main {
 
 //        deleteCustomer(1);
 
-        updateCustomer(1, new Customer(
-                1, "Dirusha Eshral",
-                "dikka@example.com"
-                )
-        );
+//        updateCustomer(1, new Customer(
+//                1, "Dirusha Eshral",
+//                "dikka@example.com"
+//                )
+//        );
+
+        List<Customer> allCustomers = getAllCustomers();
+
+        for (Customer customer : allCustomers) {
+            System.out.println(customer);
+        }
+
     }
 
     public static Customer getCustomerById(int id){
@@ -30,6 +39,15 @@ public class Main {
         Customer customer = session.get(Customer.class, id);
         session.close();
         return customer;
+    }
+
+    //HQL - Hibernate Query Language
+    public static List<Customer> getAllCustomers(){
+        Session session = FactoryConfiguration.getInstance().getSession();
+
+        List<Customer> list = session.createQuery("from Customer", Customer.class).list();
+        session.close();
+        return list;
     }
 
     public static boolean deleteCustomer(int id){
